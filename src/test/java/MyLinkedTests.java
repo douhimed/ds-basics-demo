@@ -106,4 +106,15 @@ public class MyLinkedTests {
         assertEquals("C", linkedList.getKthFromTheEnd(4));
         assertEquals("B", linkedList.getKthFromTheEnd(5));
     }
+
+    @Test
+    public void hasLoop() {
+        assertFalse(linkedList.hasLoop());
+        linkedList.addLast(D);
+        linkedList.addLast("E");
+        linkedList.addLast("F");
+        linkedList.createCircularLinkedList(4);
+        assertTrue(linkedList.hasLoop());
+
+    }
 }

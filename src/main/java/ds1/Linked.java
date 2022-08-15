@@ -1,7 +1,9 @@
 package ds1;
 
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Set;
 
 public class Linked<T> {
 
@@ -127,6 +129,10 @@ public class Linked<T> {
     }
 
     public T getKthFromTheEnd(int index) {
+        return getNodeKthFromTheEnd(index).value;
+    }
+
+    public Node<T> getNodeKthFromTheEnd(int index) {
         if (isEmpty() || isIndexValid(index))
             return null;
 
@@ -140,11 +146,43 @@ public class Linked<T> {
             firstNode = firstNode.next;
         }
 
-        return firstNode.value;
+        return firstNode;
     }
 
     private boolean isIndexValid(int index) {
         return index < 0 || index > size - 1;
+    }
+
+    public boolean hasLoop() {
+
+        if(isEmpty()) return true;
+
+        Node<T> slow = first;
+        Node<T> fast = first;
+        while (Objects.nonNull(fast) && Objects.nonNull(fast.next)) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+                return true;
+        }
+        return false;
+
+        // Slower due to the iteration over all the elements
+        /*
+        Set<Node<T>> set = new HashSet<>();
+        Node<T> current = first;
+        while (Objects.nonNull(current)) {
+            if(set.contains(current))
+                return true;
+            set.add(current);
+            current = current.next;
+        }
+        return false;
+         */
+    }
+
+    public void createCircularLinkedList(int i) {
+        last.next = getNodeKthFromTheEnd(i);
     }
 
     private static class Node<T> {
