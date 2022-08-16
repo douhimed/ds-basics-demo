@@ -1,15 +1,17 @@
 package ds1;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
-public class MyStack {
+public class MyStack<T> {
 
     private static final List<Character> OPEN_BRACKETS = Arrays.asList('(', '{', '[', '<');
     private static final List<Character> CLOSING_BRACKETS = Arrays.asList(')', '}', ']', '>');
+
+    private List<T> values = new ArrayList<>();
+    private int count = 0;
+
 
     public static boolean isBalanced(String expression) {
         if (Objects.isNull(expression))
@@ -38,4 +40,29 @@ public class MyStack {
         return function.apply(ch);
     }
 
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    public void push(T value) {
+        values.add(value);
+        count++;
+    }
+
+
+    public String print() {
+        return values.stream().filter(Objects::nonNull)
+                .map(Object::toString).collect(Collectors.joining(", ", "[", "]"));
+    }
+
+    public T peek() {
+        return values.get(count - 1);
+    }
+
+    public T pop() {
+        T value = values.get(count - 1);
+        values.set(count - 1, null);
+        count--;
+        return value;
+    }
 }
