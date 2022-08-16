@@ -48,7 +48,7 @@ public class MyArrayTests {
     @Test(expected = IllegalArgumentException.class)
     public void getAt() {
         for (int i = 1; i <= 10; i++) {
-            assertEquals(i * 10 , array.get(i - 1));
+            assertEquals(i * 10, array.get(i - 1));
         }
         assertEquals(10, array.get(1000));
         assertEquals(10, array.get(-1));
