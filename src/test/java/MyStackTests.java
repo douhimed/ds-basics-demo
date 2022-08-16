@@ -21,11 +21,11 @@ public class MyStackTests {
         balancedExpressions.add("({}<>)[]");
 
         unbalancedExpressions = new ArrayList<>();
-        balancedExpressions.add(")(");
-        balancedExpressions.add("())");
-        balancedExpressions.add(")(())");
-        balancedExpressions.add("}(){");
-        balancedExpressions.add("{})<[]");
+        unbalancedExpressions.add(")(");
+        unbalancedExpressions.add("())");
+        unbalancedExpressions.add(")(())");
+        unbalancedExpressions.add("}(){");
+        unbalancedExpressions.add("{})<[]");
     }
 
     @Test

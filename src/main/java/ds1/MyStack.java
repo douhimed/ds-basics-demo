@@ -16,21 +16,22 @@ public class MyStack {
             throw new IllegalArgumentException();
 
         final char[] chars = expression.toCharArray();
-        Stack<Character> stack = new Stack();
+        Stack<Character> stack = new Stack<>();
         for (Character ch : chars) {
-            if (isBracketInGoodPosition(OPEN_BRACKETS::contains, ch)) stack.push(ch);
-            else if (isBracketInGoodPosition(OPEN_BRACKETS::contains, ch)) {
+            if (isBracketInGoodPosition(OPEN_BRACKETS::contains, ch))
+                stack.push(ch);
+            else if (isBracketInGoodPosition(CLOSING_BRACKETS::contains, ch)) {
                 if (stack.isEmpty()) return false;
 
                 final Character pop = stack.pop();
-                if (isBrackectsUnmatched(pop, ch)) return false;
+                if (!isBracketsMatchesPosition(pop, ch)) return false;
             }
         }
         return true;
     }
 
-    private static boolean isBrackectsUnmatched(Character right, Character left) {
-        return OPEN_BRACKETS.indexOf(left) != CLOSING_BRACKETS.indexOf(right);
+    private static boolean isBracketsMatchesPosition(Character left, Character right) {
+        return OPEN_BRACKETS.indexOf(left) == CLOSING_BRACKETS.indexOf(right);
     }
 
     private static boolean isBracketInGoodPosition(Function<Character, Boolean> function, Character ch) {
