@@ -1,9 +1,5 @@
-import ds1.MyHashMap;
-import org.junit.Assert;
+import datastructure.basics.MyHashMap;
 import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class MyMapTests {
 

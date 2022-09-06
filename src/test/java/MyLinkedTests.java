@@ -1,5 +1,4 @@
-import ds1.Linked;
-import org.junit.Assert;
+import datastructure.basics.Linked;
 import org.junit.Before;
 import org.junit.Test;
 

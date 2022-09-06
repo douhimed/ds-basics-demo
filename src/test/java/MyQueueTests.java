@@ -1,5 +1,5 @@
-import ds1.MyQueue;
-import ds1.MyQueueV2;
+import datastructure.basics.MyQueue;
+import datastructure.basics.MyQueueV2;
 import org.junit.Before;
 import org.junit.Test;
 

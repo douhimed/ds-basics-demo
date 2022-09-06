@@ -1,4 +1,4 @@
-package ds1;
+package datastructure.basics;
 
 import java.util.*;
 import java.util.function.Function;

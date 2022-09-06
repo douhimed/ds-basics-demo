@@ -1,4 +1,4 @@
-import ds1.Array;
+import datastructure.basics.Array;
 import org.junit.Before;
 import org.junit.Test;
 
