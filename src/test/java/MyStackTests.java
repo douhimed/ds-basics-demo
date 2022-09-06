@@ -1,4 +1,4 @@
-import datastructure.basic.MyStack;
+import datastructure.basics.MyStack;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -21,13 +21,12 @@ public class MyHashMap<K, V> {
     }
 
     public V put(K key, V value) {
-        final LinkedList<Entry<K, V>> bucket = getOrCreateBucket(key);
         final Entry<K, V> entry = getEntry(key);
         if (Objects.nonNull(entry)) {
             entry.value = value;
             return value;
         }
-        bucket.addLast(new Entry<>(key, value));
+        getOrCreateBucket(key).addLast(new Entry<>(key, value));
         return value;
     }
 
