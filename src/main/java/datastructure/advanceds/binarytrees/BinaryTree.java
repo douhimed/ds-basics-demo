@@ -304,6 +304,20 @@ class BinaryTreeTest {
     public static void main(String[] args) {
         stringBinaryTreeExample();
         inetegerBinaryTreeExample();
+        personneBinaryTreeExample();
+    }
+
+    private static void personneBinaryTreeExample() {
+        System.out.println("============== Personne Binary Tree ==============");
+        final BinaryTree<Personne> personneBinaryTree = new BinaryTree<>(new IntegerComparator());
+        personneBinaryTree.add(new Personne(20));
+        personneBinaryTree.add(new Personne(10));
+        personneBinaryTree.add(new Personne(35));
+        personneBinaryTree.add(new Personne(1));
+        personneBinaryTree.add(new Personne(15));
+        personneBinaryTree.add(new Personne(38));
+        personneBinaryTree.add(new Personne(27));
+        personneBinaryTree.printWithInOrderStrategy();
     }
 
     private static void stringBinaryTreeExample() {
@@ -377,5 +391,29 @@ class BinaryTreeTest {
         System.out.println("Size : " + integerBinaryTree.size());
         System.out.println("Number of leaves : " + integerBinaryTree.countLeaves());
         System.out.println("Number of leaves : " + secondIntegerBinaryTree.countLeaves());
+    }
+
+    private static class Personne {
+        private int age;
+
+        public Personne(int age) {
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Personne{" + age + '}';
+        }
+
+        public int getAge() {
+            return age;
+        }
+    }
+
+    private static class IntegerComparator implements Comparator<Personne> {
+        @Override
+        public int compare(Personne o1, Personne o2) {
+            return o1.getAge() - o2.age;
+        }
     }
 }
