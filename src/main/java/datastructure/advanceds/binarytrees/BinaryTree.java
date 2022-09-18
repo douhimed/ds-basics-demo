@@ -88,7 +88,7 @@ public class BinaryTree<T> {
         while (current != null) {
             if (compareNodes(current.value, value) < 0)
                 current = current.rightChild;
-            if (compareNodes(current.value, value) > 0)
+            else if (compareNodes(current.value, value) > 0)
                 current = current.leftChild;
             else return true;
         }
@@ -96,7 +96,7 @@ public class BinaryTree<T> {
     }
 
     public boolean findWithRecursive(T value) {
-        return root != null && findWithRecursive(root, value);
+        return findWithRecursive(root, value);
     }
 
     public boolean findWithRecursive(Node<T> currentNode, T value) {
