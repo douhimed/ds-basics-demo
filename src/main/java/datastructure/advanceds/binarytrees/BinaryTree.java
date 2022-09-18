@@ -45,6 +45,7 @@ public class BinaryTree<T> {
 
     private Node<T> root;
     private final Comparator<T> comparator;
+    private int size = 0;
 
     public BinaryTree(Comparator<T> comparator) {
         this.comparator = comparator;
@@ -58,6 +59,7 @@ public class BinaryTree<T> {
         final Node<T> newNode = new Node<>(value);
         if (Objects.isNull(root)) {
             root = newNode;
+            size++;
             return;
         }
         add(root, newNode);
@@ -67,12 +69,14 @@ public class BinaryTree<T> {
         if (compareNodes(root, newNode) > 0) {
             if (root.leftChild == null) {
                 root.leftChild = newNode;
+                size++;
                 return;
             }
             add(root.leftChild, newNode);
         } else if (compareNodes(root, newNode) < 0) {
             if (root.rightChild == null) {
                 root.rightChild = newNode;
+                size++;
                 return;
             }
             add(root.rightChild, newNode);
@@ -269,6 +273,22 @@ public class BinaryTree<T> {
         System.out.println(res.stream().map(Object::toString).collect(Collectors.joining(",", "[", "]")));
     }
 
+    public int size() {
+        return size;
+    }
+
+    public int countLeaves() {
+        return countLeaves(root);
+    }
+
+    private int countLeaves(Node<T> node) {
+        if( node == null)
+            return 0;
+        if(isLeaf(node))
+            return 1;
+        return countLeaves(node.leftChild) + countLeaves(node.rightChild);
+    }
+
     private static class Node<T> {
         private final T value;
         private Node<T> leftChild;
@@ -317,6 +337,9 @@ class BinaryTreeTest {
             System.out.println("Nodes at distance : " + i + " : " + stringBinaryTree.nodeAtDistance(i).stream().map(Object::toString).collect(Collectors.joining(",", "[", "]")));
         }
         stringBinaryTree.printWithLevelOrderStrategy();
+        System.out.println("Size : " + stringBinaryTree.size());
+        System.out.println("Number of leaves : " + stringBinaryTree.countLeaves());
+        System.out.println("Number of leaves : " + secondStringBinaryTree.countLeaves());
     }
 
     private static void inetegerBinaryTreeExample() {
@@ -351,5 +374,8 @@ class BinaryTreeTest {
             System.out.println("Nodes at distance : "  + i + " : " + integerBinaryTree.nodeAtDistance(i).stream().map(Object::toString).collect(Collectors.joining(",", "[", "]")));
         }
         integerBinaryTree.printWithLevelOrderStrategy();
+        System.out.println("Size : " + integerBinaryTree.size());
+        System.out.println("Number of leaves : " + integerBinaryTree.countLeaves());
+        System.out.println("Number of leaves : " + secondIntegerBinaryTree.countLeaves());
     }
 }
